@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+
+<style>
+.image-container {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  max-width: 100%;
+  position: relative;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.image-container:hover img {
+  filter: brightness(1.1);
+}
+
+.image-caption {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7), transparent);
+  padding: 15px 20px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .image-caption {
+  transform: translateY(0);
+}
+
+@keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    /* Portfolio Button Styling */
+
+.portfolio-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 1000;
+background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+color: var(--text-primary);
+border: none;
+border-radius: 50px;
+padding: 15px 25px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+gap: 10px;
+overflow: hidden;
+text-decoration: none;
+}
+.portfolio-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+}
+.portfolio-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg,
+transparent,
+rgba(255, 255, 255, 0.2),
+transparent);
+animation: shineEffect 3s infinite;
+}
+.portfolio-icon {
+font-size: 1.2rem;
+animation: pulse 2s infinite;
+}
+@keyframes shineEffect {
+0% { left: -100%; }
+20% { left: 100%; }
+100% { left: 100%; }
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+.attention-ripple {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+border-radius: 50px;
+border: 2px solid var(--accent-color);
+animation: ripple 2s infinite;
+opacity: 0;
+}
+@keyframes ripple {
+0% {
+width: 100%;
+height: 100%;
+opacity: 0.8;
+}
+100% {
+width: 200%;
+height: 200%;
+opacity: 0;
+}
+}
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #06b6d4;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --danger-color: #dc2626;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #334155;
+    --bg-light: #f8fafc;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Tech Background Pattern */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+.circuit-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.03;
+    background-image: 
+        linear-gradient(90deg, var(--primary-color) 1px, transparent 1px),
+        linear-gradient(var(--primary-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: circuitMove 20s linear infinite;
+}
+
+@keyframes circuitMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Floating particles */
+.tech-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { 
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.6;
+    }
+    90% { 
+        opacity: 0.6;
+    }
+    100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1) 0%, 
+        rgba(6, 182, 212, 0.1) 50%, 
+        rgba(5, 150, 105, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(37, 99, 235, 0.1),
+        transparent
+    );
+    animation: headerScan 10s linear infinite;
+}
+
+@keyframes headerScan {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+    position: relative;
+}
+
+@keyframes titleGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.author-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: cardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.author-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Section styling */
+.section {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+    animation: sectionSlide 0.8s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section:nth-child(even) {
+    animation: sectionSlideRight 0.8s ease-out;
+}
+
+@keyframes sectionSlide {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sectionSlideRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 48px rgba(37, 99, 235, 0.2);
+    transform: translateY(-8px);
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Sub-section titles */
+.subsection-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subsection-title::before {
+    content: '—'; /* Simple dash or similar indicator */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Code blocks with typing effect */
+.code-terminal {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-terminal::before {
+    content: '$ mikrotik@router:~';
+    color: var(--success-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-line {
+    color: var(--text-primary);
+    margin: 8px 0;
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: fit-content;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: pre;
+}
+
+.code-line.typing {
+    opacity: 1;
+    border-right: 2px solid var(--accent-color);
+    animation: blink-cursor 1s infinite;
+}
+
+.code-line.typed {
+    opacity: 1;
+    border-right: none;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { border-color: var(--accent-color); }
+    51%, 100% { border-color: transparent; }
+}
+
+.code-line:hover {
+    background: rgba(37, 99, 235, 0.1);
+    padding-left: 25px;
+    border-radius: 6px;
+}
+
+.code-line::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+.comment {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.string {
+    color: var(--warning-color);
+    font-weight: 400;
+}
+
+.keyword {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Alert boxes */
+.tech-alert {
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1), 
+        rgba(6, 182, 212, 0.1));
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: alertPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes alertPulse {
+    0% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.4); }
+}
+
+.tech-alert::before {
+    content: '🔧 TEKNOLOGI INFO';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+.security-alert {
+    background: linear-gradient(135deg, 
+        rgba(220, 38, 38, 0.1), 
+        rgba(217, 119, 6, 0.1));
+    border: 1px solid var(--danger-color);
+    border-left: 4px solid var(--danger-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: securityBlink 2s ease-in-out infinite alternate;
+}
+
+@keyframes securityBlink {
+    0% { border-left-color: var(--danger-color); }
+    100% { border-left-color: var(--warning-color); }
+}
+
+.security-alert::before {
+    content: '🛡 KEAMANAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--danger-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--danger-color);
+}
+
+.conclusion-box {
+    background: linear-gradient(135deg, 
+        rgba(5, 150, 105, 0.1), 
+        rgba(37, 99, 235, 0.1));
+    border: 1px solid var(--success-color);
+    border-left: 4px solid var(--success-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: conclusionGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes conclusionGlow {
+    0% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(5, 150, 105, 0.4); }
+}
+
+.conclusion-box::before {
+    content: '📝 KESIMPULAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--success-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--success-color);
+}
+
+/* Bibliography */
+.bibliography {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08), 
+        rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 60px;
+    backdrop-filter: blur(20px);
+    animation: biblioFade 1.5s ease-out;
+}
+
+@keyframes biblioFade {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bibliography h3 {
+    color: var(--accent-color);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.bibliography ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 50px;
+}
+
+.bibliography li::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 1.2rem;
+}
+
+.bibliography li:hover {
+    color: var(--text-primary);
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+}
+
+.bibliography a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.bibliography a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .section {
+        padding: 25px 20px;
+        margin: 30px 0;
+    }
+    
+    .container {
+        padding: 40px 15px;
+    }
+
+    .code-terminal {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+
+    .author-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Smooth animations */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+img, a {
+-webkit-user-drag: none;
+-khtml-user-drag: none;
+-moz-user-drag: none;
+-o-user-drag: none;
+user-drag: none;
+}
+
+</style>
+<!-- Portfolio Button -->
+<a href="https://jovian-portofolio02.vercel.app/" target="_blank" class="portfolio-button">
+    <span class="portfolio-icon">🚀</span>
+    Lihat Portfolio Saya
+    <div class="attention-ripple"></div>
+</a>
+<!-- Tech Background -->
+<div class="tech-bg"></div>
+<div class="circuit-pattern"></div>
+<div class="tech-particles" id="techParticles"></div>
+<!-- Header -->
+<div class="header">
+    <h1 class="main-title">MIKROTIK ROUTEROS</h1>
+    <div class="subtitle">Mengelola Bandwidth dengan Simple Queue</div>
+    <div class="subtitle">Teknik efektif untuk kontrol bandwidth dan Quality of Service</div>
+    
+    <div class="author-card">
+        <div class="card-header">Informasi Penulis</div>
+        <div class="author-info">
+            <div class="info-item">
+                <span class="info-label">Penulis:</span>
+                <span class="info-value">Jovian Ekasakta</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Guru:</span>
+                <span class="info-value">Arief Wahyudin</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Kelas:</span>
+                <span class="info-value">XI TJKT 03</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sekolah:</span>
+                <span class="info-value">Dwija Bhakti 01 Jombang</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<!-- Network Topology Section -->
+<div class="section fade-in">
+    <h2 class="section-title">TOPOLOGI JARINGAN</h2>
+    
+    <p>Topologi jaringan berikut akan digunakan sebagai dasar ilustrasi untuk manajemen bandwidth dengan Simple Queue di MikroTik. Dalam topologi ini, MikroTik Router bertindak sebagai pengatur bandwidth untuk berbagai client di jaringan lokal.</p>
+    
+    <div class="tech-alert">
+        <p>Router MikroTik akan berfungsi sebagai pengatur bandwidth yang mendistribusikan kecepatan internet berdasarkan kebijakan yang telah ditetapkan. Simple Queue memungkinkan administrator untuk membatasi bandwidth upload dan download untuk pengguna atau kelompok pengguna tertentu.</p>
+    </div>
+    
+    <p>Berikut adalah komponen-komponen utama dalam topologi ini:</p>
+    
+    <div class="code-terminal">
+        <div class="code-line"><span class="keyword">1. MikroTik Router</span></div>
+        <div class="code-line comment"># Berfungsi sebagai pengatur bandwidth utama menggunakan Simple Queue.</div>
+        <div class="code-line"><span class="keyword">2. Jaringan Lokal (LAN)</span> (Misal: 192.168.88.0/24)</div>
+        <div class="code-line comment"># Jaringan tempat perangkat klien berada yang akan diatur bandwidth-nya.</div>
+        <div class="code-line"><span class="keyword">3. Internet/ISP</span></div>
+        <div class="code-line comment"># Jaringan publik yang menyediakan konektivitas dengan bandwidth terbatas.</div>
+    </div>
+    
+    <div class="security-alert">
+        <p>Pastikan konfigurasi Simple Queue di MikroTik memprioritaskan layanan penting dan tidak sepenuhnya membatasi lalu lintas kritis seperti DNS atau VoIP yang membutuhkan respons cepat dan konsisten.</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Section: Konsep Dasar Simple Queue -->
+    <div class="section fade-in">
+        <h2 class="section-title">1. KONSEP DASAR SIMPLE QUEUE</h2>
+        
+        <h3 class="subsection-title">Pengertian Simple Queue</h3>
+        <p>Dari sumber MikroTik Documentation (2024), Simple Queue adalah fitur manajemen bandwidth pada RouterOS yang dirancang untuk memudahkan konfigurasi tugas antrian sehari-hari yang sederhana seperti pembatasan upload/download klien tunggal dan pembatasan lalu lintas P2P. Dibandingkan dengan metode Queue Tree yang lebih kompleks, Simple Queue menawarkan pendekatan yang lebih mudah dan efisien untuk manajemen bandwidth dasar.</p>
+        
+        <p>Dari sumber System Zone (2024), Simple Queue pada MikroTik RouterOS 7 merupakan sistem manajemen bandwidth yang sederhana, mudah, dan efisien. Metode ini memiliki prinsip bahwa pengguna yang berada di antrian teratas akan mendapatkan prioritas lebih tinggi daripada yang lebih rendah jika mereka memiliki nilai prioritas yang sama.</p>
+
+        <h3 class="subsection-title">Cara Kerja Simple Queue</h3>
+        <p>Dari sumber MikroTik Wiki (2024), Simple Queue bekerja dengan prinsip membatasi laju (rate limiting) aliran lalu lintas yang dikirim atau diterima pada antarmuka jaringan. Lalu lintas dengan kecepatan kurang dari atau sama dengan kecepatan yang ditentukan akan dikirim, sedangkan lalu lintas yang melebihi kecepatan tersebut akan dijatuhkan (dropped) atau ditunda (delayed).</p>
+        
+        <p>Dari sumber Elder Node (2024), Simple Queue bekerja dengan menetapkan parameter seperti target (alamat IP atau antarmuka), nilai max-limit (batas maksimum), dan limit-at (bandwidth yang dijamin) untuk setiap antrian. Ketika paket data melewati router, Simple Queue akan membandingkan paket tersebut dengan kriteria yang telah ditetapkan dan menerapkan batas bandwidth yang sesuai.</p>
+        
+        <div class="image-container">
+            <img src="simple-queue-concept.png" alt="Konsep Simple Queue pada MikroTik">
+            <div class="image-caption">Ilustrasi konsep Simple Queue dalam manajemen bandwidth MikroTik.</div>
+        </div>
+
+        <h3 class="subsection-title">Parameter Penting dalam Simple Queue</h3>
+        <p>Dari sumber RouterOS Documentation (2024), Simple Queue memiliki beberapa parameter penting yang perlu dipahami:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">name</span> - Nama unik sebagai pengenal antrian</div>
+            <div class="code-line"><span class="keyword">target</span> - Alamat IP atau antarmuka yang akan dibatasi bandwidth-nya</div>
+            <div class="code-line"><span class="keyword">max-limit</span> - Batas bandwidth maksimum (upload/download) yang dapat digunakan</div>
+            <div class="code-line"><span class="keyword">limit-at</span> - Bandwidth minimum yang dijamin tersedia (CIR - Committed Information Rate)</div>
+            <div class="code-line"><span class="keyword">priority</span> - Nilai prioritas antrian (1-8, dimana 1 adalah prioritas tertinggi)</div>
+            <div class="code-line"><span class="keyword">parent</span> - Nama antrian induk (jika membuat hierarki antrian)</div>
+            <div class="code-line"><span class="keyword">queue</span> - Jenis antrian yang digunakan (default-small, default-large, dll)</div>
+        </div>
+        
+        <p>Dari sumber MikroTik Users (2024), pemahaman tentang parameter limit-at dan max-limit sangat penting dalam mengkonfigurasi Simple Queue. CIR (Committed Information Rate) atau limit-at adalah bandwidth minimum yang dijamin tersedia dalam kondisi terburuk, sedangkan MIR (Maximum Information Rate) atau max-limit adalah kecepatan data maksimum yang tersedia untuk aliran jika ada bandwidth bebas.</p>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Bagian Konsep Dasar:</strong> Dari 3 pendapat tersebut dapat disimpulkan bahwa Simple Queue adalah fitur manajemen bandwidth dasar di MikroTik yang efektif untuk membatasi lalu lintas jaringan individual atau kelompok. Metode ini bekerja dengan prinsip rate limiting dan memiliki parameter-parameter penting seperti max-limit, limit-at, dan priority yang memungkinkan administrator jaringan untuk menerapkan kebijakan bandwidth yang tepat sesuai kebutuhan.
+        </div>
+    </div>
+
+    <!-- Section: Implementasi Simple Queue dengan Winbox -->
+    <div class="section fade-in">
+        <h2 class="section-title">2. IMPLEMENTASI SIMPLE QUEUE DENGAN WINBOX</h2>
+
+        <h3 class="subsection-title">Konfigurasi Simple Queue Dasar</h3>
+        <p>Dari sumber Tech Soft Center (2024), implementasi Simple Queue melalui Winbox menawarkan antarmuka grafis yang intuitif dan lebih mudah dipahami oleh administrator jaringan yang belum terbiasa dengan perintah CLI. Berikut adalah langkah-langkah dasar untuk menambahkan Simple Queue dengan pembatasan bandwidth untuk satu klien:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue Dasar:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "client1"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan alamat IP klien (contoh: 192.168.88.10)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "2M/2M" (2Mbps upload/download)</div>
+            <div class="code-line">8. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+            <div class="code-line comment"># Membuat antrian dengan nama "client1" untuk IP 192.168.88.10 dengan batas maksimum 2Mbps untuk upload dan download</div>
+        </div>
+        
+        <p>Dari sumber Shaharia Blog (2019), untuk menyesuaikan batas bandwidth dengan kebutuhan yang lebih spesifik, dapat ditambahkan parameter limit-at untuk menjamin bandwidth minimum:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Bandwidth Minimum Terjamin:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "client1"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan alamat IP klien (contoh: 192.168.88.10)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "2M/2M" (2Mbps upload/download)</div>
+            <div class="code-line">8. Pada kolom "Limit At", masukkan "512k/512k" (512Kbps upload/download)</div>
+            <div class="code-line">9. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+            <div class="code-line comment"># Menjamin bandwidth minimal 512Kbps dengan maksimum 2Mbps</div>
+        </div>
+
+        <h3 class="subsection-title">Konfigurasi untuk Beberapa Client Sekaligus</h3>
+        <p>Dari sumber Shaharia Blog (2019), untuk mengelola bandwidth pada jaringan dengan banyak klien, penggunaan fitur address list pada Winbox dapat menghemat waktu. Berikut contoh langkah-langkah untuk mengelola beberapa IP sekaligus:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Membuat Address List untuk Grup Klien:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "IP" → "Firewall" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Address Lists"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan address list baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "client-group"</div>
+            <div class="code-line">6. Pada kolom "Address", masukkan "192.168.88.0/24"</div>
+            <div class="code-line">7. Klik "OK" untuk menyimpan address list</div>
+            <div class="code-line comment"># Menambahkan Simple Queue untuk Address List</div>
+            <div class="code-line">8. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">9. Pilih tab "Simple Queues"</div>
+            <div class="code-line">10. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">11. Pada kolom "Name", masukkan "client-group-queue"</div>
+            <div class="code-line">12. Pada kolom "Target", klik tombol "..." dan pilih address list "client-group"</div>
+            <div class="code-line">13. Pada tab "Advanced", isi kolom "Max Limit" dengan "1M/1M" (1Mbps upload/download)</div>
+            <div class="code-line">14. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+            <div class="code-line comment"># Membatasi semua alamat dalam kelompok dengan 1Mbps</div>
+        </div>
+
+        <p>Dari sumber Tech Soft Center (2024), untuk pengaturan yang lebih kompleks, Anda dapat menetapkan priority pada antrian untuk menentukan prioritas lalu lintas:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengonfigurasi Prioritas Antrian:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "voip"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan alamat IP VoIP server (contoh: 192.168.88.20)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "1M/1M"</div>
+            <div class="code-line">8. Pada kolom "Priority", pilih "1" (prioritas tertinggi)</div>
+            <div class="code-line">9. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+            <div class="code-line comment"># Membuat antrian untuk IP 192.168.88.20 dengan prioritas tertinggi (1) untuk layanan VoIP</div>
+            <div class="code-line comment"># Ulangi langkah yang sama untuk file server dengan prioritas 5</div>
+        </div>
+
+        <h3 class="subsection-title">Konfigurasi Simple Queue dengan Parent-Child</h3>
+        <p>Dari sumber MikroTik Documentation (2024), hierarki parent-child pada Simple Queue memungkinkan pengelolaan bandwidth yang lebih terstruktur. Metode ini berguna untuk mengalokasikan total bandwidth ke grup dan kemudian membaginya di antara anggota grup:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Membuat Struktur Parent-Child Queue:</span></div>
+            <div class="code-line comment"># Langkah 1: Buat parent queue untuk seluruh jaringan departemen</div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "dept-accounting"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan subnet departemen (contoh: 192.168.10.0/24)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "10M/10M"</div>
+            <div class="code-line">8. Klik "Apply" kemudian "OK" untuk menyimpan parent queue</div>
+            <div class="code-line comment"># Langkah 2: Buat child queues untuk masing-masing klien dalam departemen</div>
+            <div class="code-line">9. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">10. Pada kolom "Name", masukkan "accounting-pc1"</div>
+            <div class="code-line">11. Pada kolom "Target", masukkan alamat IP klien pertama (contoh: 192.168.10.1)</div>
+            <div class="code-line">12. Pada tab "Advanced", isi kolom "Max Limit" dengan "2M/2M"</div>
+            <div class="code-line">13. Pada kolom "Parent", klik dropdown dan pilih "dept-accounting"</div>
+            <div class="code-line">14. Klik "Apply" kemudian "OK" untuk menyimpan child queue pertama</div>
+            <div class="code-line">15. Ulangi langkah 9-14 untuk klien kedua, ganti nama menjadi "accounting-pc2" dan target menjadi 192.168.10.2</div>
+        </div>
+        
+        <p>Dari sumber MikroTik Community Forum (2020), dalam konfigurasi parent-child, penting untuk memahami urutan antrian:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line comment"># Mengatur urutan antrian pada Winbox:</div>
+            <div class="code-line">1. Setelah membuat parent dan child queues, klik pada tab "Simple Queues"</div>
+            <div class="code-line">2. Pastikan child queues berada di atas parent queue dalam daftar</div>
+            <div class="code-line">3. Jika perlu mengubah urutan, pilih antrian yang ingin dipindahkan</div>
+            <div class="code-line">4. Gunakan tombol panah atas/bawah di toolbar untuk mengubah posisi antrian</div>
+            <div class="code-line comment"># Aturan penting dalam konfigurasi parent-child:</div>
+            <div class="code-line comment"># 1. Jumlah limit-at dari semua child harus <= max-limit parent</div>
+            <div class="code-line comment"># 2. Max-limit setiap child harus <= max-limit parent</div>
+            <div class="code-line comment"># 3. Antrian child harus berada di atas parent dalam urutan antrian</div>
+        </div>
+
+        <p>Dari sumber Tech Soft Center (2019), untuk implementasi berbagi bandwidth (shared bandwidth) dengan Winbox, konfigurasi parent-child sangat berguna:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Implementasi Shared Bandwidth:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "limit-all"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan subnet jaringan (contoh: 10.10.10.0/24)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "512k/512k"</div>
+            <div class="code-line">8. Klik "Apply" kemudian "OK" untuk menyimpan parent queue</div>
+            <div class="code-line">9. Tambahkan child queue untuk klien pertama dengan mengklik tombol "+"</div>
+            <div class="code-line">10. Masukkan nama "limit-1", target "10.10.10.1", max-limit "512k/512k", limit-at "256k/256k"</div>
+            <div class="code-line">11. Pilih parent "limit-all" dari dropdown dan klik "OK"</div>
+            <div class="code-line">12. Ulangi untuk klien kedua dengan target "10.10.10.2"</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Dari sumber MikroTik Community Forum (2020), posisi parent queue relatif terhadap child queue-nya sangat penting. Untuk fungsi yang benar, antrian child harus berada di atas parent-nya dalam urutan antrian, atau MikroTik tidak akan menerapkan pembatasan bandwidth dengan benar. Di Winbox, gunakan tombol panah di toolbar untuk menyusun ulang antrian.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Bagian Implementasi Winbox:</strong> Dari 3 pendapat tersebut dapat disimpulkan bahwa implementasi Simple Queue melalui Winbox menawarkan antarmuka grafis yang intuitif dan mudah dipahami. Dari konfigurasi dasar hingga pengaturan parent-child yang kompleks, Winbox memungkinkan administrator untuk mengelola bandwidth dengan presisi. Penggunaan parameter-parameter seperti max-limit, limit-at, priority, dan parent memungkinkan penciptaan struktur manajemen bandwidth yang kompleks namun efisien.
+        </div>
+    </div>
+
+    <!-- Section: Konfigurasi Lanjutan Simple Queue -->
+    <div class="section fade-in">
+        <h2 class="section-title">3. KONFIGURASI LANJUTAN SIMPLE QUEUE</h2>
+
+        <h3 class="subsection-title">Implementasi PCQ (Per Connection Queue)</h3>
+        <p>Dari sumber MikroTik Users (2024), PCQ (Per Connection Queue) adalah tipe antrian khusus pada MikroTik yang digunakan untuk mendistribusikan bandwidth secara otomatis di antara banyak klien atau aliran. PCQ membagi bandwidth yang tersedia secara merata di antara semua koneksi aktif, memastikan setiap pengguna mendapatkan bagian yang adil:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Implementasi PCQ di Winbox:</span></div>
+            <div class="code-line comment"># Langkah 1: Buat tipe queue PCQ khusus</div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Queue Types"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan tipe antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "pcq-download"</div>
+            <div class="code-line">6. Pada kolom "Kind", pilih "pcq"</div>
+            <div class="code-line">7. Pada kolom "PCQ Classifier", pilih "dst-address"</div>
+            <div class="code-line">8. Klik "OK" untuk menyimpan tipe antrian pertama</div>
+            <div class="code-line">9. Ulangi langkah 4-8 untuk membuat tipe "pcq-upload" dengan classifier "src-address"</div>
+            <div class="code-line comment"># Langkah 2: Terapkan tipe PCQ ke Simple Queue</div>
+            <div class="code-line">10. Kembali ke tab "Simple Queues"</div>
+            <div class="code-line">11. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">12. Pada kolom "Name", masukkan "shared-bandwidth"</div>
+            <div class="code-line">13. Pada kolom "Target", masukkan subnet jaringan (contoh: 192.168.88.0/24)</div>
+            <div class="code-line">14. Pada tab "Advanced", isi kolom "Max Limit" dengan "10M/10M"</div>
+            <div class="code-line">15. Pada dropdown "Queue Type", pilih "pcq-upload" untuk upload dan "pcq-download" untuk download</div>
+            <div class="code-line">16. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+        </div>
+        
+        <p>Dari sumber RouterOS Documentation (2024), algoritma PCQ sangat sederhana - pertama, ia menggunakan classifier yang dipilih untuk membedakan satu sub-aliran dari yang lain, kemudian menerapkan ukuran dan batasan FIFO individual pada setiap sub-aliran, kemudian mengelompokkan semua sub-aliran dan menerapkan ukuran dan batasan antrian global.</p>
+
+        <h3 class="subsection-title">Konfigurasi Time-Based Simple Queue</h3>
+        <p>Dari sumber Elder Node (2024), fitur time pada Simple Queue memungkinkan administrator untuk menentukan kapan aturan queue tertentu akan aktif. Ini sangat berguna untuk menerapkan kebijakan berbeda pada jam kerja dan di luar jam kerja:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Konfigurasi Time-Based Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "office-hours"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan subnet jaringan (contoh: 192.168.88.0/24)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "5M/5M"</div>
+            <div class="code-line">8. Pada tab "Time", aktifkan "Use Time" dengan mencentangnya</div>
+            <div class="code-line">9. Pada kolom "Time", masukkan "8h-17h"</div>
+            <div class="code-line">10. Centang hari kerja: Mon, Tue, Wed, Thu, Fri</div>
+            <div class="code-line">11. Klik "Apply" kemudian "OK" untuk menyimpan antrian jam kerja</div>
+            <div class="code-line comment"># Menambahkan antrian untuk di luar jam kerja</div>
+            <div class="code-line">12. Ulangi langkah 4-7, ganti nama menjadi "after-hours" dan max-limit menjadi "10M/10M"</div>
+            <div class="code-line">13. Pada tab "Time", aktifkan "Use Time" dengan mencentangnya</div>
+            <div class="code-line">14. Pada kolom "Time", masukkan "17h-8h"</div>
+            <div class="code-line">15. Centang semua hari: Mon, Tue, Wed, Thu, Fri, Sat, Sun</div>
+            <div class="code-line">16. Klik "Apply" kemudian "OK" untuk menyimpan antrian luar jam kerja</div>
+        </div>
+        
+        <p>Dari sumber MikroTik Documentation (2024), parameter time menggunakan format TIME-TIME,sun,mon,tue,wed,thu,fri,sat, di mana TIME adalah waktu lokal dan semua nama hari bersifat opsional.</p>
+
+        <h3 class="subsection-title">Konfigurasi Burst Mode</h3>
+        <p>Dari sumber Elder Node (2024), fitur Burst pada Simple Queue memungkinkan kecepatan browsing web menjadi tinggi tetapi menurun ketika pengguna mengunduh volume yang tinggi. Ini sangat berguna untuk memberikan pengalaman browsing yang lebih baik:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Konfigurasi Burst Mode di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan antrian baru</div>
+            <div class="code-line">5. Pada kolom "Name", masukkan "client-burst"</div>
+            <div class="code-line">6. Pada kolom "Target", masukkan alamat IP klien (contoh: 192.168.88.10)</div>
+            <div class="code-line">7. Pada tab "Advanced", isi kolom "Max Limit" dengan "2M/2M"</div>
+            <div class="code-line">8. Pada area "Burst", isi parameter berikut:</div>
+            <div class="code-line">   - Burst Limit: 4M/4M</div>
+            <div class="code-line">   - Burst Time: 30s/30s</div>
+            <div class="code-line">   - Burst Threshold: 1M/1M</div>
+            <div class="code-line">9. Klik "Apply" kemudian "OK" untuk menyimpan konfigurasi</div>
+            <div class="code-line comment"># Memungkinkan client mencapai 4Mbps selama 30 detik jika lalu lintas di bawah 1Mbps</div>
+        </div>
+        
+        <p>Dari sumber RouterOS Documentation (2024), parameter burst yang penting meliputi:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">burst-limit</span> - Kecepatan maksimum saat mode burst aktif</div>
+            <div class="code-line"><span class="keyword">burst-time</span> - Berapa lama mode burst dapat aktif</div>
+            <div class="code-line"><span class="keyword">burst-threshold</span> - Lalu lintas harus di bawah nilai ini untuk mengaktifkan mode burst</div>
+        </div>
+
+        <div class="security-alert">
+            <p>Dari sumber Super User Forum (2022), penting untuk mempertimbangkan total bandwidth yang tersedia dari ISP ketika mengkonfigurasi burst mode. Mengatur burst-limit terlalu tinggi dapat menyebabkan congestion pada link upstream jika banyak pengguna mengaktifkan burst secara bersamaan.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Bagian Konfigurasi Lanjutan:</strong> Dari 3 pendapat tersebut dapat disimpulkan bahwa konfigurasi lanjutan Simple Queue seperti PCQ, time-based queueing, dan burst mode memberikan fleksibilitas yang lebih besar dalam mengelola bandwidth. PCQ memastikan distribusi bandwidth yang adil, pengaturan berbasis waktu memungkinkan kebijakan bandwidth yang beragam pada waktu yang berbeda, dan fitur burst meningkatkan pengalaman browsing dengan memungkinkan lonjakan bandwidth sementara untuk aktivitas tertentu.
+        </div>
+    </div>
+
+    <!-- Section: Monitoring dan Troubleshooting Simple Queue -->
+    <div class="section fade-in">
+        <h2 class="section-title">4. MONITORING DAN TROUBLESHOOTING SIMPLE QUEUE</h2>
+
+        <h3 class="subsection-title">Monitoring Penggunaan Bandwidth</h3>
+        <p>Dari sumber Tech Soft Center (2024), monitoring penggunaan bandwidth adalah langkah penting untuk memastikan bahwa konfigurasi Simple Queue berjalan efektif. MikroTik menyediakan beberapa metode di Winbox untuk memonitor penggunaan bandwidth secara real-time:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Monitoring Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Perhatikan kolom "Rate" yang menampilkan penggunaan bandwidth saat ini</div>
+            <div class="code-line">5. Untuk informasi lebih detail, klik kanan pada antrian tertentu</div>
+            <div class="code-line">6. Pilih "Simple Queue Stats" dari menu konteks</div>
+            <div class="code-line comment"># Jendela Simple Queue Stats menampilkan statistik real-time untuk antrian yang dipilih</div>
+            <div class="code-line comment"># Termasuk rate, packet-rate, bytes, dan packets</div>
+        </div>
+        
+        <p>Dari sumber MikroTik Documentation (2024), tool Torch di Winbox sangat berguna untuk memonitor lalu lintas secara real-time pada interface tertentu:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menggunakan Tool Torch di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Torch" dari submenu</div>
+            <div class="code-line">4. Pada jendela Torch, pilih interface dari dropdown (contoh: ether1)</div>
+            <div class="code-line">5. Pada kolom "Src. Address", masukkan alamat IP sumber (opsional)</div>
+            <div class="code-line">6. Pada kolom "Dst. Address", masukkan alamat IP tujuan (opsional)</div>
+            <div class="code-line">7. Atur "Duration" ke 30 detik (atau sesuai kebutuhan)</div>
+            <div class="code-line">8. Klik "Start" untuk memulai monitoring</div>
+            <div class="code-line comment"># Torch akan menampilkan grafik dan tabel traffic untuk analisis real-time</div>
+        </div>
+
+        <h3 class="subsection-title">Mendiagnosis Masalah Simple Queue</h3>
+        <p>Dari sumber MikroTik Community Forum (2020), masalah umum pada Simple Queue seringkali terkait dengan konfigurasi yang tidak tepat atau masalah pemahaman tentang cara kerja antrian. Beberapa langkah troubleshooting dasar di Winbox:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Troubleshooting Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Periksa kolom "X" yang menunjukkan antrian dinonaktifkan</div>
+            <div class="code-line">5. Untuk mengaktifkan antrian yang dinonaktifkan:</div>
+            <div class="code-line">   - Klik kanan pada antrian yang memiliki tanda X</div>
+            <div class="code-line">   - Pilih "Enable" dari menu konteks</div>
+            <div class="code-line comment"># Periksa urutan antrian untuk parent-child relationships:</div>
+            <div class="code-line">6. Pastikan child queue berada di atas parent queue</div>
+            <div class="code-line">7. Jika tidak, gunakan tombol panah atas/bawah untuk mengatur ulang posisi</div>
+        </div>
+        
+        <p>Dari sumber MikroTik Documentation (2024), FastTrack merupakan fitur yang dapat mengabaikan antrian dan menyebabkan Simple Queue tidak berfungsi. Ini dapat diperiksa dan dikelola di Winbox:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengelola FastTrack di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "IP" → "Firewall" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Filter Rules"</div>
+            <div class="code-line">4. Periksa apakah ada aturan dengan Action "fasttrack-connection"</div>
+            <div class="code-line">5. Untuk mengecualikan traffic dari FastTrack:</div>
+            <div class="code-line">   - Klik tombol "+" (add) untuk menambahkan aturan baru</div>
+            <div class="code-line">   - Pada tab "General", pilih "forward" pada Chain</div>
+            <div class="code-line">   - Pada tab "Advanced", masukkan alamat IP klien pada kolom "Src. Address"</div>
+            <div class="code-line">   - Pada tab "Action", pilih "accept" dari dropdown</div>
+            <div class="code-line">   - Aktifkan "Place Before" dan pilih aturan fasttrack</div>
+            <div class="code-line">   - Klik "OK" untuk menyimpan aturan</div>
+        </div>
+
+        <h3 class="subsection-title">Pengoptimalan Simple Queue</h3>
+        <p>Dari sumber Tech Soft Center (2024), untuk mengoptimalkan kinerja Simple Queue, perlu diperhatikan beberapa hal berikut di Winbox:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Memeriksa Penggunaan CPU di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "System" di panel kiri</div>
+            <div class="code-line">3. Pilih "Resources" dari submenu</div>
+            <div class="code-line">4. Perhatikan nilai CPU Load dan Memory Usage</div>
+            <div class="code-line comment"># Jika CPU usage tinggi, pertimbangkan untuk mengurangi jumlah queue atau menggunakan PCQ</div>
+            <div class="code-line">5. Untuk melihat proses yang menggunakan CPU, klik menu "System" → "CPU"</div>
+        </div>
+        
+        <p>Dari sumber Shaharia Blog (2019), pengelolaan Simple Queue yang baik juga terkait dengan perencanaan bandwidth yang tepat:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengoptimalkan Alokasi Bandwidth di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Edit antrian parent dengan mengklik dua kali pada antrian tersebut</div>
+            <div class="code-line">5. Pada tab "Advanced", atur Max Limit sedikit di bawah bandwidth ISP</div>
+            <div class="code-line">   (contoh: jika ISP 100Mbps, gunakan 95M/95M)</div>
+            <div class="code-line">6. Klik "Apply" kemudian "OK" untuk menyimpan perubahan</div>
+            <div class="code-line comment"># Ini akan mencegah antrian menyebabkan kemacetan pada link ISP</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Dari sumber MikroTik Documentation (2024), perlu diingat bahwa Simple Queue membutuhkan sumber daya yang lebih banyak daripada Queue Tree ketika jumlah antrian sangat besar. Untuk jaringan dengan banyak klien (>100), pertimbangkan untuk menggunakan kombinasi Queue Tree dan PCQ untuk efisiensi yang lebih baik. Ini dapat dikonfigurasi melalui Winbox di menu Queue → Queue Tree.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Bagian Monitoring dan Troubleshooting:</strong> Dari 3 pendapat tersebut dapat disimpulkan bahwa monitoring dan troubleshooting Simple Queue merupakan bagian penting dari manajemen bandwidth yang efektif. Dengan antarmuka Winbox, administrator dapat memantau penggunaan bandwidth secara real-time, mendiagnosis masalah seperti urutan antrian yang salah atau interferensi FastTrack, dan mengoptimalkan konfigurasi untuk kinerja terbaik. Pemahaman tentang manajemen sumber daya dan alokasi bandwidth yang tepat membantu memastikan kinerja Simple Queue yang optimal.
+        </div>
+    </div>
+
+    <!-- Bibliography -->
+    <div class="bibliography">
+        <h3>DAFTAR PUSTAKA</h3>
+        <ul>
+            <li><strong>MikroTik Documentation.</strong> 2024. <em>Queues - RouterOS</em>. <a href="https://help.mikrotik.com/docs/spaces/ROS/pages/328088/Queues" target="_blank">https://help.mikrotik.com/docs/spaces/ROS/pages/328088/Queues</a>. Diakses pada 16 September 2025, pukul 07:15 WIB.</li>
+            
+            <li><strong>System Zone.</strong> 2024. <em>MikroTik Bandwidth Management using Simple Queue</em>. <a href="https://systemzone.net/mikrotik-router-bandwidth-management/" target="_blank">https://systemzone.net/mikrotik-router-bandwidth-management/</a>. Diakses pada 16 September 2025, pukul 07:45 WIB.</li>
+            
+            <li><strong>Tech Soft Center.</strong> 2024. <em>Mikrotik Bandwidth Management Using the Simple Queue</em>. <a href="https://techsoftcenter.com/mikrotik-bandwidth-management-using-the-simple-queue/" target="_blank">https://techsoftcenter.com/mikrotik-bandwidth-management-using-the-simple-queue/</a>. Diakses pada 16 September 2025, pukul 08:10 WIB.</li>
+            
+            <li><strong>Elder Node.</strong> 2024. <em>How to Control Bandwidth in MikroTik: The Simple Queue Feature</em>. <a href="https://blog.eldernode.com/bandwidth-control-in-mikrotik/" target="_blank">https://blog.eldernode.com/bandwidth-control-in-mikrotik/</a>. Diakses pada 16 September 2025, pukul 08:35 WIB.</li>
+
+            <li><strong>MikroTik Wiki.</strong> 2024. <em>Manual:Queue</em>. <a href="https://wiki.mikrotik.com/Manual:Queue" target="_blank">https://wiki.mikrotik.com/Manual:Queue</a>. Diakses pada 16 September 2025, pukul 09:05 WIB.</li>
+
+            <li><strong>Shaharia Blog.</strong> 2019. <em>Mikrotik Simple Queue Script - Add All IP at Once In Queue</em>. <a href="https://blog.shaharia.com/mikrotik-simple-queue-script-add-all-ip" target="_blank">https://blog.shaharia.com/mikrotik-simple-queue-script-add-all-ip</a>. Diakses pada 16 September 2025, pukul 09:40 WIB.</li>
+
+            <li><strong>Tech Soft Center.</strong> 2019. <em>Mikrotik Shared Bandwidth Management Tutorial Using Simple Queue</em>. <a href="https://techsoftcenter.com/mikrotik-shared-bandwidth-management-tutorial-using-simple-queue/" target="_blank">https://techsoftcenter.com/mikrotik-shared-bandwidth-management-tutorial-using-simple-queue/</a>. Diakses pada 16 September 2025, pukul 10:15 WIB.</li>
+
+            <li><strong>MikroTik Users.</strong> 2024. <em>Queueing and QoS on MikroTik RouterOS v7</em>. <a href="https://mikrotikusers.com/queueing-and-qos-on-mikrotik-routeros-v7/" target="_blank">https://mikrotikusers.com/queueing-and-qos-on-mikrotik-routeros-v7/</a>. Diakses pada 16 September 2025, pukul 10:50 WIB.</li>
+
+            <li><strong>Super User Forum.</strong> 2022. <em>Bandwidth Control with Queue in Mikrotik</em>. <a href="https://superuser.com/questions/1722877/bandwidth-control-with-queue-in-mikrotik" target="_blank">https://superuser.com/questions/1722877/bandwidth-control-with-queue-in-mikrotik</a>. Diakses pada 16 September 2025, pukul 11:25 WIB.</li>
+
+            <li><strong>MikroTik Community Forum.</strong> 2020. <em>How to set up simple PCQ queue with children</em>. <a href="https://forum.mikrotik.com/viewtopic.php?t=159602" target="_blank">https://forum.mikrotik.com/viewtopic.php?t=159602</a>. Diakses pada 16 September 2025, pukul 12:05 WIB.</li>
+        </ul>
+    </div>
+</div>
+<script>
+    // Tech particles animation
+    function createTechParticles() {
+        const particlesContainer = document.getElementById('techParticles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Scroll progress
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+    }
+
+    // Typing effect for code lines
+    function typeText(element, text, speed = 30) {
+        return new Promise(resolve => {
+            element.classList.add('typing');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent = text.slice(0, i + 1);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                    element.classList.add('typed');
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+    
+    async function animateCodeBlock(terminal) {
+        const codeLines = terminal.querySelectorAll('.code-line:not(.typed)');
+        for (const line of codeLines) {
+            const originalHTML = line.innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            
+            // Clear the line content, but keep child spans for styling
+            const children = Array.from(line.childNodes).map(child => child.cloneNode(true));
+            line.innerHTML = '';
+            
+            await typeText(line, textContent, 20);
+            
+            // Restore original HTML with spans
+            line.innerHTML = originalHTML;
+            line.classList.add('typed');
+        }
+    }
+
+    // Animate code blocks with typing effect
+    function setupCodeBlockObserver() {
+        const codeTerminals = document.querySelectorAll('.code-terminal');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const terminal = entry.target;
+                    // For already typed lines, just show them
+                    terminal.querySelectorAll('.code-line.typed').forEach(line => line.style.opacity = '1');
+                    
+                    animateCodeBlock(terminal);
+                    obs.unobserve(terminal); // Animate only once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        codeTerminals.forEach(terminal => {
+            observer.observe(terminal);
+        });
+    }
+
+    // Fade in animation on scroll
+    function animateOnScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Section hover effects
+    function addSectionEffects() {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-8px)';
+            });
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createTechParticles();
+        animateOnScroll();
+        setupCodeBlockObserver();
+        addSectionEffects();
+        
+        // Scroll events
+        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    });
+
+    // Add responsive particle count
+    function adjustParticleCount() {
+        const width = window.innerWidth;
+        const particlesContainer = document.getElementById('techParticles');
+        const currentParticles = particlesContainer.children.length;
+        const targetParticles = width < 768 ? 20 : width < 1200 ? 35 : 50;
+        
+        if (currentParticles !== targetParticles) {
+            particlesContainer.innerHTML = '';
+            for (let i = 0; i < targetParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+    }
+
+    window.addEventListener('resize', adjustParticleCount);
+
+
+
+   
+</script>
+
+</html>
